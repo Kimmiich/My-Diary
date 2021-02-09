@@ -68,7 +68,6 @@ function addingArrayToLocal() {
     }
    let getSaved = JSON.parse(localStorage.getItem("arraySaved"))
    getSaved.push(newArray);
-//    sortArray(arraySavedTexts);
    localStorage.setItem("arraySaved", JSON.stringify(getSaved));
    console.log(getSaved);
    printingPage();
@@ -81,12 +80,13 @@ function printingPage() {
     savedContent.innerHTML = "";
 
     if (localStorage.getItem("arraySaved")) {
-        getContent = JSON.parse(localStorage.getItem("arraySaved", "value"))
-    
+        getContent = JSON.parse(localStorage.getItem("arraySaved", "value"));
+        console.log(getContent);
         for (let i = 0; i < getContent.length; i++) {
             //Printa ut på sidan vad vi har i localstorage
             savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${getContent[i].Headline}<span>${getContent[i].Date}</span></h3><p> ${getContent[i].Text}</p></article>`);
         };
+        
     };
 };
 
