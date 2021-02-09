@@ -24,8 +24,8 @@ main.insertAdjacentHTML("afterbegin",`
     <input id="textContent" type="text" placeholder="Text...">
     <button id="btnSave">Spara</button>
 </fieldset>
+<h2>Livet i text</h2>
 <section id="savedContent">
-    <h2>Livet i text</h2>
 </section>` );
 
 //Hämtar skapade element
@@ -35,6 +35,12 @@ const textContent = document.getElementById("textContent");
 const btnSave = document.getElementById("btnSave");
 const savedContent = document.getElementById("savedContent");
 const newContent = document.getElementById("newContent");
+
+// Initiera local om den är tom 
+if (localStorage.getItem("arraySaved") == null) {
+    setStartArray = [];
+    localStorage.setItem("arraySaved", JSON.stringify(setStartArray));
+};
 
 // Spara inlägg som object array med keys - savedheadline, savedDate & savedContent
 let arraySavedTexts = [];
@@ -53,29 +59,6 @@ btnSave.addEventListener("click", function(){
     // sortArray(arraySavedTexts);
 });
 
-//Funktion för att sortera
-// function sortArray(a, b){
-//         JSON.parse(localStorage.getItem(arraySavedTexts))
-//         arraySavedTexts["Date"].sort((function(a, b){return a -b}));
-//         localStorage.setItem("arraySaved", JSON.stringify(arraySavedTexts));
-//         console.log(arraySavedTexts);
-//         printingPage();
-//     };
-
-//Funktion för att printa ut array i localstorage
-function printingPage() {
-    let arraySaved = JSON.parse(localStorage.getItem(arraySavedTexts));
-    console.log(arraySavedTexts);
-     //For-loop som går igenom localStorage 
-     for (i in arraySavedTexts) {
-        // sortArray(arraySavedTexts);
-        //Printa ut på sidan vad vi har i localstorage
-        savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${newTextHeadline}<span>${newTextDate}</span></h3><p> ${newTextContent}</p></article>`);
-        
-        };
-        // localStorage.setItem("arraySavedTexts", JSON.stringify(arraySavedTexts));
-};
-
 //Funktion för att spara till local
 function addingArrayToLocal() {
     let newArray = {
@@ -83,29 +66,36 @@ function addingArrayToLocal() {
         "Date": newTextDate,
         "Text": newTextContent
     }
-   arraySaved = JSON.parse(localStorage.getItem(arraySavedTexts))
-   arraySavedTexts.push(newArray);
+   let getSaved = JSON.parse(localStorage.getItem("arraySaved"))
+   getSaved.push(newArray);
 //    sortArray(arraySavedTexts);
-   localStorage.setItem("arraySaved", JSON.stringify(arraySavedTexts));
-   console.log(arraySavedTexts);
+   localStorage.setItem("arraySaved", JSON.stringify(getSaved));
+   console.log(getSaved);
    printingPage();
 };
 
-//If för att spara inlägg på sidan
-if (localStorage.getItem("arraySaved")) {
-    console.log("Hej igen");
-    JSON.parse(localStorage.getItem("arraySaved", "value"))
+//Funktion för att skriva ut inlägg på sidan
+function printingPage() {
 
-    for (let i = 0; i < localStorage.length; i++) {
-        // sortArray(arraySavedTexts);
-        
-        //Printa ut på sidan vad vi har i localstorage
-        savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${newTextHeadline}<span>${newTextDate}</span></h3><p> ${newTextContent}</p></article>`);
-        
-        };
+    // Tömm innehåll innan vi printar igen
+    savedContent.innerHTML = "";
+
+    if (localStorage.getItem("arraySaved")) {
+        getContent = JSON.parse(localStorage.getItem("arraySaved", "value"))
+    
+        for (let i = 0; i < getContent.length; i++) {
+            // sortArray(arraySavedTexts);
+            
+            //Printa ut på sidan vad vi har i localstorage
+            savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${getContent[i].Headline}<span>${getContent[i].Date}</span></h3><p> ${getContent[i].Text}</p></article>`);
+            
+            };
+    };
 };
+
+// KÖR FUNKTION PRINTINGPAGE I SLUTET AV VARJE LIFECYCLE FÖR ATT PRINTA DET SOM FINNS
+printingPage();
 
 //Kod för att sortera lista
 // myArray.sort((function(a, b)return b - a));
-
 
