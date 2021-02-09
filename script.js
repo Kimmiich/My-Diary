@@ -84,12 +84,9 @@ function printingPage() {
         getContent = JSON.parse(localStorage.getItem("arraySaved", "value"))
     
         for (let i = 0; i < getContent.length; i++) {
-            // sortArray(arraySavedTexts);
-            
             //Printa ut på sidan vad vi har i localstorage
             savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${getContent[i].Headline}<span>${getContent[i].Date}</span></h3><p> ${getContent[i].Text}</p></article>`);
-            
-            };
+        };
     };
 };
 

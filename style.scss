@@ -1,39 +1,80 @@
 html,
 body {
     box-sizing: border-box;
-    background-color: aquamarine;
+    background-color: #F2C6B6;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    font-family: 'Open Sans', sans-serif;
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.6em;
+        color: #389BA6;
+    }
+    h2 {
+        font-family: 'Dancing Script', cursive;
+        text-align: center;
+        color:#389BA6;
+        font-size: 2.2em;
+        margin-bottom: 0px;
+    }
     
     fieldset {
         display: flex;
         justify-content: center;
         flex-flow: row wrap;
         max-width: 400px;
-
+        background-color:#F2EDDF;
+        font-size: 1.2em;
+        
         #textHeadline {
             width: 200px;
             margin-right: 2px;
             margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
         }
 
         #textDate {
             width: 142px;
             margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
         }
         
         #textContent {
             width: 350px;
             min-height: 300px;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
         }
-        #btnSave {
+        button {
             width: 358px;
+            font-size: 0.9em;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #D96459;
+        }
+        button:hover {
+            background-color: rgb(187, 70, 59);
         }
     }
 
-    #savedContent {
-        text-align: center;
+    #newContent {
+        h3 {
+            margin-top: 0px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            color: #389BA6;
+
+            span {
+                font-size: 0.8em;
+            }
+        }
+        p{
+            color: black;
+        }
     }
 }
+
+
