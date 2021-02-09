@@ -1,0 +1,39 @@
+html,
+body {
+    box-sizing: border-box;
+    background-color: aquamarine;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    fieldset {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        max-width: 400px;
+
+        #textHeadline {
+            width: 200px;
+            margin-right: 2px;
+            margin-bottom: 5px;
+        }
+
+        #textDate {
+            width: 142px;
+            margin-bottom: 5px;
+        }
+        
+        #textContent {
+            width: 350px;
+            min-height: 300px;
+        }
+        #btnSave {
+            width: 358px;
+        }
+    }
+
+    #savedContent {
+        text-align: center;
+    }
+}
