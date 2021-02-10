@@ -1,13 +1,3 @@
-// Vi utvecklar en dagbok för oss själva. Våra dagboksinlägg skall sparas i localStorage så att vi kan återkomma till sidan vid ett senare tillfälle och skriva nya inlägg. 
-
-// När vi skapar ett inlägg så skall vi kunna ändra och skriva datum, rubrik samt en text.
-
-// Alla skriva inlägg skall sedan visas i kronologiskt ordning på sidan under formuläret.
-
-// skapa ett fieldset med legend och input
-// inputfält för datum rubrik och text 
-//skapa knapp som sparar inlägget till sidan som en article. senaste inlägget ska sparas i localstorage och visas överst på sidan.
-
 console.log("Nu kör vi");
 //Hämta våra element
 const header = document.getElementById("header");
@@ -82,6 +72,7 @@ function printingPage() {
     if (localStorage.getItem("arraySaved")) {
         getContent = JSON.parse(localStorage.getItem("arraySaved", "value"));
         console.log(getContent);
+        sortByDate(getContent);
         for (let i = 0; i < getContent.length; i++) {
             //Printa ut på sidan vad vi har i localstorage
             savedContent.insertAdjacentHTML("beforeend", `<article id="newContent"><h3> ${getContent[i].Headline}<span>${getContent[i].Date}</span></h3><p> ${getContent[i].Text}</p></article>`);
@@ -89,6 +80,13 @@ function printingPage() {
         
     };
 };
+
+//Funktion för att sortera inlägg
+function sortByDate(arraySaved) {
+    arraySaved.sort((a, b) => {
+    if (a.Date > b.Date){ return -1 };
+    });
+   };
 
 // KÖR FUNKTION PRINTINGPAGE I SLUTET AV VARJE LIFECYCLE FÖR ATT PRINTA DET SOM FINNS
 printingPage();
