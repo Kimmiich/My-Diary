@@ -49,6 +49,7 @@ btnSave.addEventListener("click", function(){
     // sortArray(arraySavedTexts);
 });
 
+
 //Funktion för att spara till local
 function addingArrayToLocal() {
     let newArray = {
